@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Inventory</string>
+    <string name="equip">Оборудование</string>
+    <string name="insert">Внести данные</string>
+    <string name="info">О приложении</string>
+    <string name="main">Главная Страница</string>
+    <string name="text">Ввести в ручную</string>
+    <string name="qr">Сканировать QR-код</string>
+    <string name="search">Поиск</string>
+    <string name="serial">Серийный номер</string>
+    <string name="inventory">Инвентарный номер</string>
+    <string name="name">Название</string>
+    <string name="cabs">Кабинет</string>
+    <string name="id">Id</string>
+    <string name="insert_update">Внести</string>
+    <string name="update">Изменить</string>
+    <string name="insert_into">Внести</string>
+    <string name="some_id">Приложение Инвентаризация Курсовая работа студента группы БД–20–1 Гурова В.С.</string>
+    <string name="ret">Назад</string>
+    <string name="search_by_criteria">Пойск по критериям</string>
+</resources>
