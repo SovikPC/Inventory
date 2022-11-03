@@ -88,13 +88,24 @@
         android:text="@string/search_by_criteria" />
 
     <ListView
-        android:id="@+id/countriesList"
+        android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="373dp"
-        android:choiceMode="multipleChoice"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="0dp"
-        android:layout_marginBottom="0dp" />
+        android:layout_marginBottom="0dp"
+        />
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="339dp"
+        />
 </RelativeLayout>
