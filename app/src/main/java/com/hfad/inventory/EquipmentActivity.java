@@ -1,84 +1,74 @@
 package com.hfad.inventory;
 
-import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.SimpleCursorAdapter;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.widget.ListView;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
+import android.widget.TextView;
 
 public class EquipmentActivity extends AppCompatActivity {
 
+    ListView equipmentList;
+    TextView header;
+    InventoryDatabaseHelper databaseHelper;
+    SQLiteDatabase db;
+    Cursor equipmentCursor;
+    SimpleCursorAdapter equipmentAdapter;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_equipment);
-        ListView countriesList = findViewById(R.id.countriesList);
-        ArrayAdapter<String> adapter = new ArrayAdapter(this,
-                android.R.layout.simple_list_item_1, countries);
-        countriesList.setAdapter(adapter);
+
+        header = findViewById(R.id.header);
+        equipmentList = findViewById(R.id.list);
+
+        databaseHelper = new InventoryDatabaseHelper(this);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item){
-//        switch (item.getItemId()){
-//            case R.id.insert:
-////                Intent intent = new Intent();
-////                intent.setClass(this, InsertActivity.class);
-////                startActivity(intent);
-//                return true;
-//            case R.id.update:
-//                Intent intent1 = new Intent();
-//                intent1.setClass(this, UpdateActivity.class);
-//                startActivity(intent1);
-//                return true;
-//            case R.id.ret:
-//                Intent intent2 = new Intent();
-//                intent2.setClass(this, MainActivity.class);
-//                startActivity(intent2);
-//                return true;
-//            default:
-//                return true;
-//        }
-//    }
-
-    public void onResume() {
-        super.onResume();
-        // открываем подключение
-        db = databaseHelper.getReadableDatabase();
-
-        //получаем данные из бд в виде курсора
-        userCursor =  db.rawQuery("select * from "+ DatabaseHelper.TABLE, null);
-        // определяем, какие столбцы из курсора будут выводиться в ListView
-        String[] headers = new String[] {DatabaseHelper.COLUMN_NAME, DatabaseHelper.COLUMN_YEAR};
-        // создаем адаптер, передаем в него курсор
-        userAdapter = new SimpleCursorAdapter(this, android.R.layout.two_line_list_item,
-                userCursor, headers, new int[]{android.R.id.text1, android.R.id.text2}, 0);
-        header.setText("Найдено элементов: " +  userCursor.getCount());
-        userList.setAdapter(userAdapter);
+        menu.add(0,1,0,"Добавить");
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case 1:
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void onResume(){
+        super.onResume();
+        db = databaseHelper.getReadableDatabase();
+
+        equipmentCursor = db.rawQuery("Select * from "+InventoryDatabaseHelper.TABLE_1+" join "+InventoryDatabaseHelper.TABLE_3+" on " +
+                        ""+InventoryDatabaseHelper.TABLE_1+"."+InventoryDatabaseHelper.COLUMN_ID_EQUIPMENT+" = "+InventoryDatabaseHelper.TABLE_3+"."+InventoryDatabaseHelper.COLUMN_ID_EQUIP+" " +
+                        "join "+InventoryDatabaseHelper.TABLE_2+" on "+InventoryDatabaseHelper.TABLE_3+"."+InventoryDatabaseHelper.COLUMN_ID_CAB+" = "+InventoryDatabaseHelper.TABLE_2+"."+InventoryDatabaseHelper.COLUMN_ID_CABS+"" +
+                        " join "+InventoryDatabaseHelper.TABLE_5+" on "+InventoryDatabaseHelper.TABLE_1+"."+InventoryDatabaseHelper.COLUMN_ID_EQUIPMENT+" = "+InventoryDatabaseHelper.TABLE_5+"."+InventoryDatabaseHelper.COLUMN_ID_EQ+"" +
+                        " join "+InventoryDatabaseHelper.TABLE_4+" on "+InventoryDatabaseHelper.TABLE_5+"."+InventoryDatabaseHelper.COLUMN_ID_ST+" = "+InventoryDatabaseHelper.TABLE_4+"."+InventoryDatabaseHelper.COLUMN_ID_STATE+"",
+                null);
+        String[] headers = new String[] {InventoryDatabaseHelper.COLUMN_NAME_CABS, InventoryDatabaseHelper.COLUMN_NAME_EQUIPMENT,InventoryDatabaseHelper.COLUMN_INV_EQUIPMENT, InventoryDatabaseHelper.COLUMN_SR_EQUIPMENT, InventoryDatabaseHelper.COLUMN_NAME_STATE};
+        equipmentAdapter = new SimpleCursorAdapter(this, R.layout.list_items,
+                equipmentCursor, headers, new int[]{R.id.text_view_cabs, R.id.text_view_name, R.id.text_view_invent, R.id.text_view_serial, R.id.text_view_state}, 0);
+        equipmentList.setAdapter(equipmentAdapter);
+    }
+
     public void onDestroy(){
         super.onDestroy();
-        // Закрываем подключение и курсор
         db.close();
-        userCursor.close();
+        equipmentCursor.close();
     }
 }
