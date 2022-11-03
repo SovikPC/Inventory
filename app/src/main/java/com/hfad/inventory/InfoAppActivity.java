@@ -5,7 +5,7 @@ import android.view.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class InfoActivity extends AppCompatActivity {
+public class InfoAppActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
