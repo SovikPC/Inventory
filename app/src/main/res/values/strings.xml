@@ -18,4 +18,5 @@
     <string name="some_id">Приложение Инвентаризация Курсовая работа студента группы БД–20–1 Гурова В.С.</string>
     <string name="ret">Назад</string>
     <string name="search_by_criteria">Пойск по критериям</string>
+    <string name="state">Статус</string>
 </resources>
