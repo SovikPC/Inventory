@@ -1,5 +1,6 @@
 package com.hfad.inventory;
 
+import android.content.ContentValues;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.Context;
@@ -12,30 +13,27 @@ public class InventoryDatabaseHelper extends SQLiteOpenHelper {
     static final String TABLE_1 = "Equipment";
 
     public static final String COLUMN_ID_EQUIPMENT = "_id";
-    public static final String COLUMN_NAME_EQUIPMENT = "name_equipment";
+    public static final String COLUMN_ID_CAB = "cabs_id";
+    public static final String COLUMN_ID_TYP = "type_id";
     public static final String COLUMN_INV_EQUIPMENT = "Inventory";
     public static final String COLUMN_SR_EQUIPMENT = "Serial";
-    public  static  final  String COLUMN_STATE_EQUIPMENT = "State";
+    public static final String COLUMN_ID_ST = "state_id";
 
     static final String TABLE_2 = "Cabs";
 
     public static final String COLUMN_ID_CABS = "_id";
     public static final String COLUMN_NAME_CABS = "name_cabs";
 
-    static final String TABLE_3 = "Cabs_Equipment";
 
-    public static final String COLUMN_ID_CAB = "cabs_id";
-    public static final String COLUMN_ID_EQUIP = "equipment_id";
-
-    static final String TABLE_4 = "State";
+    static final String TABLE_3 = "State";
 
     public static final String COLUMN_ID_STATE = "_id";
     public static final String COLUMN_NAME_STATE = "name_state";
 
-    static final String TABLE_5 = "State_Equipment";
+    static final String TABLE_4 = "Type";
 
-    public static final String COLUMN_ID_ST = "state_id";
-    public static final String COLUMN_ID_EQ = "equipment_id";
+    public static final String COLUMN_ID_TYPE = "_id";
+    public static final String COLUMN_NAME_TYPE = "name_type";
 
     public InventoryDatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -43,65 +41,101 @@ public class InventoryDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("Create table Equipment("+COLUMN_ID_EQUIPMENT+" integer primary key autoincrement,"
-                +COLUMN_NAME_EQUIPMENT+" text,"
-                +COLUMN_INV_EQUIPMENT+" integer unique,"
-                +COLUMN_SR_EQUIPMENT+" text unique,"
-                +COLUMN_STATE_EQUIPMENT+" text);");
-        db.execSQL("Create table Cabs("+COLUMN_ID_CABS+" integer primary key autoincrement,"
-                +COLUMN_NAME_CABS+" text);");
-        db.execSQL("Create table Cabs_Equipment("+COLUMN_ID_EQUIP+" integer not null,"
-                +COLUMN_ID_CAB+" integer not null,"
-                +"foreign key ("+COLUMN_ID_EQUIP+") references Equipment("+COLUMN_ID_EQUIPMENT+"),"
-                +"foreign key ("+COLUMN_ID_CAB+") references Cabs("+COLUMN_ID_CABS+"));");
-        db.execSQL("Create table State("+COLUMN_ID_STATE+" integer primary key autoincrement,"
-                +COLUMN_NAME_STATE+" text);");
-        db.execSQL("Create table State_Equipment("+COLUMN_ID_EQ+" integer not null,"
-                +COLUMN_ID_ST+" integer not null,"
-                +"foreign key ("+COLUMN_ID_EQ+") references Equipment("+COLUMN_ID_EQUIPMENT+"),"
-                +"foreign key ("+COLUMN_ID_ST+") references State("+COLUMN_ID_STATE+"));");
-        db.execSQL("INSERT INTO "+TABLE_1+" ("+COLUMN_NAME_EQUIPMENT+","+COLUMN_INV_EQUIPMENT+","+COLUMN_SR_EQUIPMENT+") VALUES ('Системный блок',187385625,'8g7fds5g6sg55ud');");
+        db.execSQL("Create table "+TABLE_2+" (" +
+                ""+COLUMN_ID_CABS+" integer primary key autoincrement," +
+                ""+COLUMN_NAME_CABS+" text)");
+        db.execSQL("Create table "+TABLE_3+" (" +
+                ""+COLUMN_ID_STATE+" integer primary key autoincrement," +
+                ""+COLUMN_NAME_STATE+" text)");
+        db.execSQL("Create table "+TABLE_4+" (" +
+                ""+COLUMN_ID_TYPE+" integer primary key autoincrement," +
+                ""+COLUMN_NAME_TYPE+" text)");
+        db.execSQL("Create table "+TABLE_1+" (" +
+                ""+COLUMN_ID_EQUIPMENT+" integer primary key autoincrement," +
+                ""+COLUMN_ID_CAB+" integer," +
+                ""+COLUMN_ID_TYP+" integer," +
+                ""+COLUMN_INV_EQUIPMENT+" integer unique," +
+                ""+COLUMN_SR_EQUIPMENT+" text unique," +
+                ""+COLUMN_ID_ST+" integer," +
+                "Foreign key("+COLUMN_ID_CAB+") references "+TABLE_2+"("+COLUMN_ID_CABS+")," +
+                "Foreign key("+COLUMN_ID_TYP+") references "+TABLE_4+"("+COLUMN_ID_TYPE+")," +
+                "Foreign key("+COLUMN_ID_ST+") references "+TABLE_3+"("+COLUMN_ID_STATE+"))");
         db.execSQL("INSERT INTO "+TABLE_2+" ("+COLUMN_NAME_CABS+") VALUES ('206');");
-        db.execSQL("INSERT INTO "+TABLE_3+" ("+COLUMN_ID_CAB+","+COLUMN_ID_EQUIP+") VALUES (1,1);");
-        db.execSQL("INSERT INTO "+TABLE_1+" ("+COLUMN_NAME_EQUIPMENT+","+COLUMN_INV_EQUIPMENT+","+COLUMN_SR_EQUIPMENT+") VALUES ('Системный блок',34597645876,'87dfg57d6g765');");
         db.execSQL("INSERT INTO "+TABLE_2+" ("+COLUMN_NAME_CABS+") VALUES ('209');");
-        db.execSQL("INSERT INTO "+TABLE_3+" ("+COLUMN_ID_CAB+","+COLUMN_ID_EQUIP+") VALUES (2,2);");
-        db.execSQL("INSERT INTO "+TABLE_4+" ("+COLUMN_NAME_STATE+") VALUES ('Работает');");
-        db.execSQL("INSERT INTO "+TABLE_5+" ("+COLUMN_ID_ST+","+COLUMN_ID_EQ+") VALUES (1,1);");
-        db.execSQL("INSERT INTO "+TABLE_4+" ("+COLUMN_NAME_STATE+") VALUES ('Не найден');");
-        db.execSQL("INSERT INTO "+TABLE_5+" ("+COLUMN_ID_ST+","+COLUMN_ID_EQ+") VALUES (2,2);");
+        db.execSQL("INSERT INTO "+TABLE_4+" ("+COLUMN_NAME_TYPE+") VALUES ('Системный блок');");
+        db.execSQL("INSERT INTO "+TABLE_4+" ("+COLUMN_NAME_TYPE+") VALUES ('Монитор');");
+        db.execSQL("INSERT INTO "+TABLE_3+" ("+COLUMN_NAME_STATE+") VALUES ('В наличии');");
+        db.execSQL("INSERT INTO "+TABLE_3+" ("+COLUMN_NAME_STATE+") VALUES ('Утерян');");
+        db.execSQL("INSERT INTO "+TABLE_1+" ("+COLUMN_ID_CAB+", "+COLUMN_ID_TYP+", "+COLUMN_INV_EQUIPMENT+", "+COLUMN_SR_EQUIPMENT+", "+COLUMN_ID_ST+") VALUES (1,1,119043257,'76fdg4gf5hd4',1), (2,2,7565925564,'fdhf56d74h6f4',2);");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion,  int newVersion) {
         if(newVersion>0){
-            db.execSQL("Create table Equipment("+COLUMN_ID_EQUIPMENT+" integer primary key autoincrement,"
-                    +COLUMN_NAME_EQUIPMENT+" text,"
-                    +COLUMN_INV_EQUIPMENT+" integer unique,"
-                    +COLUMN_SR_EQUIPMENT+" text unique,"
-                    +COLUMN_STATE_EQUIPMENT+" text);");
-            db.execSQL("Create table Cabs("+COLUMN_ID_CABS+" integer primary key autoincrement,"
-                    +COLUMN_NAME_CABS+" text);");
-            db.execSQL("Create table Cabs_Equipment("+COLUMN_ID_EQUIP+" integer not null,"
-                    +COLUMN_ID_CAB+" integer not null,"
-                    +"foreign key ("+COLUMN_ID_EQUIP+") references Equipment("+COLUMN_ID_EQUIPMENT+"),"
-                    +"foreign key ("+COLUMN_ID_CAB+") references Cabs("+COLUMN_ID_CABS+"));");
-            db.execSQL("Create table State("+COLUMN_ID_STATE+" integer primary key autoincrement,"
-                    +COLUMN_NAME_STATE+" text);");
-            db.execSQL("Create table State_Equipment("+COLUMN_ID_EQ+" integer not null,"
-                    +COLUMN_ID_ST+" integer not null,"
-                    +"foreign key ("+COLUMN_ID_EQ+") references Equipment("+COLUMN_ID_EQUIPMENT+"),"
-                    +"foreign key ("+COLUMN_ID_ST+") references State("+COLUMN_ID_STATE+"));");
-            db.execSQL("INSERT INTO "+TABLE_1+" ("+COLUMN_NAME_EQUIPMENT+","+COLUMN_INV_EQUIPMENT+","+COLUMN_SR_EQUIPMENT+") VALUES ('Системный блок',187385625,'8g7fds5g6sg55ud');");
-            db.execSQL("INSERT INTO "+TABLE_2+" ("+COLUMN_NAME_CABS+") VALUES ('206');");
-            db.execSQL("INSERT INTO "+TABLE_3+" ("+COLUMN_ID_CAB+","+COLUMN_ID_EQUIP+") VALUES (1,1);");
-            db.execSQL("INSERT INTO "+TABLE_1+" ("+COLUMN_NAME_EQUIPMENT+","+COLUMN_INV_EQUIPMENT+","+COLUMN_SR_EQUIPMENT+") VALUES ('Системный блок',34597645876,'87dfg57d6g765');");
-            db.execSQL("INSERT INTO "+TABLE_2+" ("+COLUMN_NAME_CABS+") VALUES ('209');");
-            db.execSQL("INSERT INTO "+TABLE_3+" ("+COLUMN_ID_CAB+","+COLUMN_ID_EQUIP+") VALUES (2,2);");
-            db.execSQL("INSERT INTO "+TABLE_4+" ("+COLUMN_NAME_STATE+") VALUES ('Работает');");
-            db.execSQL("INSERT INTO "+TABLE_5+" ("+COLUMN_ID_ST+","+COLUMN_ID_EQ+") VALUES (1,1);");
-            db.execSQL("INSERT INTO "+TABLE_4+" ("+COLUMN_NAME_STATE+") VALUES ('Не найден');");
-            db.execSQL("INSERT INTO "+TABLE_5+" ("+COLUMN_ID_ST+","+COLUMN_ID_EQ+") VALUES (2,2);");
+            db.execSQL("Create table "+TABLE_2+" (" +
+                    ""+COLUMN_ID_CABS+" integer primary key autoincrement," +
+                    ""+COLUMN_NAME_CABS+" text)");
+            db.execSQL("Create table "+TABLE_3+" (" +
+                    ""+COLUMN_ID_STATE+" integer primary key autoincrement," +
+                    ""+COLUMN_NAME_STATE+" text)");
+            db.execSQL("Create table "+TABLE_4+" (" +
+                    ""+COLUMN_ID_TYPE+" integer primary key autoincrement," +
+                    ""+COLUMN_NAME_TYPE+" text)");
+            db.execSQL("Create table "+TABLE_1+" (" +
+                    ""+COLUMN_ID_EQUIPMENT+" integer primary key autoincrement," +
+                    ""+COLUMN_ID_CAB+" integer," +
+                    ""+COLUMN_ID_TYP+" integer," +
+                    ""+COLUMN_INV_EQUIPMENT+" integer unique," +
+                    ""+COLUMN_SR_EQUIPMENT+" text unique," +
+                    ""+COLUMN_ID_ST+" integer," +
+                    "Foreign key("+COLUMN_ID_CAB+") references "+TABLE_2+"("+COLUMN_ID_CABS+")," +
+                    "Foreign key("+COLUMN_ID_TYP+") references "+TABLE_4+"("+COLUMN_ID_TYPE+")," +
+                    "Foreign key("+COLUMN_ID_ST+") references "+TABLE_3+"("+COLUMN_ID_STATE+"))");
         }
         onCreate(db);
+    }
+    public void insertEquipment(long cabs,long type, String invent, String serial, long status){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_ID_CAB,cabs);
+        values.put(COLUMN_ID_TYP,type);
+        values.put(COLUMN_INV_EQUIPMENT,invent);
+        values.put(COLUMN_SR_EQUIPMENT,serial);
+        values.put(COLUMN_ID_ST,status);
+
+        db.insert(TABLE_1, null, values);
+    }
+
+    public void insertCabs(String cabs){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_NAME_CABS,cabs);
+
+        db.insert(TABLE_2, null, values);
+    }
+
+    public void insertType(String type){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_NAME_TYPE,type);
+
+        db.insert(TABLE_4, null, values);
+    }
+
+    public void updateEquipment(long id, long cabs, long status){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_ID_CAB,cabs);
+        values.put(COLUMN_ID_ST,status);
+
+        db.update(TABLE_1,values,COLUMN_ID_EQUIPMENT+ "=" + id, null);
     }
 }
