@@ -32,6 +32,27 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+        <activity android:name=".InfoEquipActivity" android:exported="true" android:parentActivityName=".EquipmentActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".EquipmentActivity" />
+
+        </activity>
+        <activity android:name=".InsertEquipment" android:exported="true" android:parentActivityName=".EquipmentActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".EquipmentActivity" />
+        </activity>
+        <activity android:name=".InsertCabs" android:exported="true" android:parentActivityName=".EquipmentActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".EquipmentActivity" />
+        </activity>
+        <activity android:name=".InsertType" android:exported="true" android:parentActivityName=".EquipmentActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".EquipmentActivity" />
+        </activity>
     </application>
 
 </manifest>
