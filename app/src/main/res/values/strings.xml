@@ -11,12 +11,20 @@
     <string name="inventory">Инвентарный номер</string>
     <string name="name">Название</string>
     <string name="cabs">Кабинет</string>
+    <string name="insert_cabs">Добаваить кабинет</string>
+    <string name="insert_equip_tup">Добаваить тип оборудования</string>
     <string name="id">Id</string>
     <string name="insert_update">Внести</string>
     <string name="update">Изменить</string>
-    <string name="insert_into">Внести</string>
+    <string name="update_equip">Обновление данных</string>
+    <string name="insert_into">Добавить</string>
+    <string name="add_equip">Добаваить оборудование</string>
     <string name="some_id">Приложение Инвентаризация Курсовая работа студента группы БД–20–1 Гурова В.С.</string>
     <string name="ret">Назад</string>
     <string name="search_by_criteria">Пойск по критериям</string>
     <string name="state">Статус</string>
+    <string-array name="state">
+        <item>В наличии</item>
+        <item>Утерян</item>
+    </string-array>
 </resources>
