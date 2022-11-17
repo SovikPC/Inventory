@@ -7,26 +7,6 @@
     tools:context=".InsertEquipment"
     >
 
-    <Spinner
-        android:id="@+id/spinner_search2"
-        android:layout_width="210dp"
-        android:layout_height="44dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="57dp" />
-
-    <Spinner
-        android:id="@+id/spinner_search"
-        android:layout_width="210dp"
-        android:layout_height="44dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="114dp" />
-
     <Button
         android:id="@+id/search_but"
         android:layout_width="153dp"
@@ -34,11 +14,24 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="169dp"
+        android:layout_marginTop="143dp"
         android:layout_marginEnd="129dp"
         android:onClick="onClick"
-        android:text="@string/update"
+        android:text="@string/insert_into"
         android:textColor="@color/white" />
+
+    <EditText
+        android:id="@+id/new_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="75dp"
+        android:ems="10"
+        android:hint="@string/equip"
+        android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/search"
@@ -47,7 +40,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="11dp"
-        android:text="@string/update_equip"
+        android:text="@string/insert_equip_tup"
         android:textSize="19dp" />
 
 </RelativeLayout>
