@@ -1,11 +1,11 @@
 package com.hfad.inventory;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
@@ -20,10 +20,6 @@ public class InsertEquipment extends AppCompatActivity {
     Spinner status_select;
     EditText insert;
     EditText serial;
-    Cursor equipmentCursor;
-    String item_type;
-    String item_cabs;
-    String item_state;
 
 
     @Override
@@ -68,7 +64,7 @@ public class InsertEquipment extends AppCompatActivity {
         int[] adapterRowViews2 = new int[]{android.R.id.text1};
         SimpleCursorAdapter cursorAdapter2 = new SimpleCursorAdapter(
                 this, android.R.layout.simple_spinner_item, cursor2, adapterCols2, adapterRowViews2, 0);
-        cursorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        cursorAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cabs_select.setAdapter(cursorAdapter2);
 
         String[] queryCols3 = new String[]{"_id", InventoryDatabaseHelper.COLUMN_NAME_TYPE};
@@ -86,7 +82,7 @@ public class InsertEquipment extends AppCompatActivity {
         int[] adapterRowViews3 = new int[]{android.R.id.text1};
         SimpleCursorAdapter cursorAdapter3 = new SimpleCursorAdapter(
                 this, android.R.layout.simple_spinner_item, cursor3, adapterCols3, adapterRowViews3, 0);
-        cursorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        cursorAdapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         type_select.setAdapter(cursorAdapter3);
     }
 
@@ -107,9 +103,17 @@ public class InsertEquipment extends AppCompatActivity {
         serial = findViewById(R.id.serial_insert);
         String insert_num = insert.getText().toString();
         String serial_num = serial.getText().toString();
-        InventoryDatabaseHelper databaseHelper = new InventoryDatabaseHelper(this);
-        databaseHelper.insertEquipment(cabs_name,type_name, insert_num, serial_num,status_name);
-
+        if(insert_num.equals("") || serial_num.equals("")){
+            Toast toast = Toast.makeText(this,"Пожалуйсто заполните все поле", Toast.LENGTH_SHORT);
+            toast.show();
+        }else {
+            InventoryDatabaseHelper databaseHelper = new InventoryDatabaseHelper(this);
+            databaseHelper.insertEquipment(cabs_name, type_name, insert_num, serial_num, status_name);
+            Toast toast = Toast.makeText(this, "Оборудование добавлено в базу", Toast.LENGTH_SHORT);
+            toast.show();
+            Intent intent = new Intent(InsertEquipment.this, EquipmentActivity.class);
+            startActivity(intent);
+        }
     }
 }
 
