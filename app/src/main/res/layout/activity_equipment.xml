@@ -4,108 +4,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EquipmentActivity">
-
-    <EditText
-        android:id="@+id/editTextTextPersonName6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="42dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/id" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="100dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/cabs" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="158dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/name" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="216dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/inventory" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="276dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/serial" />
-
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="108dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="275dp"
-        android:layout_marginEnd="21dp"
-        android:textColor="@color/white"
-        android:background="@drawable/bbkg"
-        android:text="@string/search" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="14dp"
-        android:text="@string/search_by_criteria" />
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    tools:context=".EquipmentActivity"
+    >
 
     <ListView
         android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="373dp"
+        android:layout_width="395dp"
+        android:layout_height="616dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="0dp"
         android:layout_marginBottom="0dp"
-        />
+        android:focusableInTouchMode="false"
+        android:isScrollContainer="false" />
 
-    <TextView
-        android:id="@+id/header"
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/search_bar"
+        android:layout_width="395dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="339dp"
-        />
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/search" />
+
 </RelativeLayout>
