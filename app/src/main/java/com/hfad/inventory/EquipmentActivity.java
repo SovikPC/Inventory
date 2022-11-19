@@ -118,13 +118,13 @@ public class EquipmentActivity extends AppCompatActivity{
             public Cursor runQuery(CharSequence constraint) {
                 if(constraint == null||constraint.length() == 0
                 ){
-                    return db.rawQuery("Select * from "+InventoryDatabaseHelper.TABLE_1+"" +
+                    return db.rawQuery("Select "+InventoryDatabaseHelper.TABLE_1+"."+InventoryDatabaseHelper.COLUMN_ID_EQUIPMENT+" , "+InventoryDatabaseHelper.TABLE_2+"."+InventoryDatabaseHelper.COLUMN_NAME_CABS+", "+InventoryDatabaseHelper.TABLE_4+"."+InventoryDatabaseHelper.COLUMN_NAME_TYPE+", "+InventoryDatabaseHelper.TABLE_1+"."+InventoryDatabaseHelper.COLUMN_INV_EQUIPMENT+", "+InventoryDatabaseHelper.TABLE_1+"."+InventoryDatabaseHelper.COLUMN_SR_EQUIPMENT+", "+InventoryDatabaseHelper.TABLE_3+"."+InventoryDatabaseHelper.COLUMN_NAME_STATE+"  from "+InventoryDatabaseHelper.TABLE_1+"" +
                                     " join "+InventoryDatabaseHelper.TABLE_3+" on "+InventoryDatabaseHelper.TABLE_1+"."+InventoryDatabaseHelper.COLUMN_ID_ST+" = "+InventoryDatabaseHelper.TABLE_3+"."+InventoryDatabaseHelper.COLUMN_ID_STATE+" " +
                                     "join "+InventoryDatabaseHelper.TABLE_2+" on "+InventoryDatabaseHelper.TABLE_1+"."+InventoryDatabaseHelper.COLUMN_ID_CAB+" = "+InventoryDatabaseHelper.TABLE_2+"."+InventoryDatabaseHelper.COLUMN_ID_CABS+"" +
                                     " join "+InventoryDatabaseHelper.TABLE_4+" on "+InventoryDatabaseHelper.TABLE_1+"."+InventoryDatabaseHelper.COLUMN_ID_TYP+" = "+InventoryDatabaseHelper.TABLE_4+"."+InventoryDatabaseHelper.COLUMN_ID_TYPE+"",
                             null);
                 }else{
-                    return db.rawQuery("Select * from "+InventoryDatabaseHelper.TABLE_1+"" +
+                    return db.rawQuery("Select "+InventoryDatabaseHelper.TABLE_1+"."+InventoryDatabaseHelper.COLUMN_ID_EQUIPMENT+" , "+InventoryDatabaseHelper.TABLE_2+"."+InventoryDatabaseHelper.COLUMN_NAME_CABS+", "+InventoryDatabaseHelper.TABLE_4+"."+InventoryDatabaseHelper.COLUMN_NAME_TYPE+", "+InventoryDatabaseHelper.TABLE_1+"."+InventoryDatabaseHelper.COLUMN_INV_EQUIPMENT+", "+InventoryDatabaseHelper.TABLE_1+"."+InventoryDatabaseHelper.COLUMN_SR_EQUIPMENT+", "+InventoryDatabaseHelper.TABLE_3+"."+InventoryDatabaseHelper.COLUMN_NAME_STATE+"  from "+InventoryDatabaseHelper.TABLE_1+"" +
                                     " join "+InventoryDatabaseHelper.TABLE_3+" on "+InventoryDatabaseHelper.TABLE_1+"."+InventoryDatabaseHelper.COLUMN_ID_ST+" = "+InventoryDatabaseHelper.TABLE_3+"."+InventoryDatabaseHelper.COLUMN_ID_STATE+" " +
                                     "join "+InventoryDatabaseHelper.TABLE_2+" on "+InventoryDatabaseHelper.TABLE_1+"."+InventoryDatabaseHelper.COLUMN_ID_CAB+" = "+InventoryDatabaseHelper.TABLE_2+"."+InventoryDatabaseHelper.COLUMN_ID_CABS+"" +
                                     " join "+InventoryDatabaseHelper.TABLE_4+" on "+InventoryDatabaseHelper.TABLE_1+"."+InventoryDatabaseHelper.COLUMN_ID_TYP+" = "+InventoryDatabaseHelper.TABLE_4+"."+InventoryDatabaseHelper.COLUMN_ID_TYPE+"" +
