@@ -13,25 +13,19 @@
 
     <ListView
         android:id="@+id/list"
-        android:layout_width="395dp"
-        android:layout_height="616dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="0dp"
         android:focusableInTouchMode="false"
+        android:layout_below="@+id/search_bar"
         android:isScrollContainer="false" />
 
     <EditText
         android:id="@+id/search_bar"
         android:layout_width="395dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/search" />
+        android:hint="@string/search"
+        android:inputType="textPersonName" />
 
 </RelativeLayout>

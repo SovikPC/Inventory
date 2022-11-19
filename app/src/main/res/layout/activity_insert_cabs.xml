@@ -4,42 +4,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
     tools:context=".InsertCabs"
     >
 
     <Button
         android:id="@+id/search_but"
-        android:layout_width="153dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="143dp"
-        android:layout_marginEnd="129dp"
+        android:layout_below="@+id/new_cabs"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="17dp"
         android:onClick="onClick"
         android:text="@string/insert_into"
         android:textColor="@color/white" />
 
     <EditText
         android:id="@+id/new_cabs"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="75dp"
+        android:layout_width="210dp"
+        android:layout_height="44dp"
+        android:layout_below="@+id/insert_cab"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="26dp"
         android:ems="10"
         android:hint="@string/cabs"
         android:inputType="textPersonName" />
 
     <TextView
-        android:id="@+id/search"
+        android:id="@+id/insert_cab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="11dp"
         android:text="@string/insert_cabs"
         android:textSize="19dp" />
 
