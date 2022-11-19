@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int END = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.button2:
                 Intent intent2 = new Intent(this, InfoAppActivity.class);
                 startActivity(intent2);
+                break;
+            case R.id.button3:
+                System.exit(END);
                 break;
         }
     }
