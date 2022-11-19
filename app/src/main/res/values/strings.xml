@@ -23,6 +23,7 @@
     <string name="ret">Назад</string>
     <string name="search_by_criteria">Пойск по критериям</string>
     <string name="state">Статус</string>
+    <string name="exit">Выход</string>
     <string-array name="state">
         <item>В наличии</item>
         <item>Утерян</item>
