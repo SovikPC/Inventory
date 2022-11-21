@@ -54,11 +54,11 @@ public class EquipmentActivity extends AppCompatActivity{
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu_main, menu);
         menu.add(0,1,0,"Добавить оборудование")
-                .setIcon(R.drawable.add_equip_foreground);
+                .setIcon(R.drawable.add_equipment_foreground);
         menu.add(0,2,0,"Добавить кабинет")
-                .setIcon(R.drawable.add_equip_foreground);
+                .setIcon(R.drawable.add_cabs_foreground);
         menu.add(0,3,0,"Добавить тип оборудования")
-                .setIcon(R.drawable.add_equip_foreground);
+                .setIcon(R.drawable.add_type_equip_foreground);
         return super.onCreateOptionsMenu(menu);
     }
 
