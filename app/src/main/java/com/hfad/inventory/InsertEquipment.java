@@ -25,7 +25,7 @@ public class InsertEquipment extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_signin);
+        setContentView(R.layout.activity_insert_equipment);
 
         cabs_select = (Spinner) findViewById(R.id.spinner_search2);
         type_select = (Spinner) findViewById(R.id.spinner_search3);
